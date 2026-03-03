@@ -13,6 +13,9 @@ const config = [
             sourceType: 'module',
             ecmaVersion: 2024,
             parser: typescriptParser,
+            parserOptions: {
+                tsconfigRootDir: process.cwd(),
+            },
         },
         rules: {
             strict: 'error',
