@@ -1,6 +1,6 @@
 {
   "name": "utilbee",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Shared utilities for reuse across Login projects",
   "homepage": "https://github.com/Login-Linjeforening-for-IT/utilbee#readme",
   "bugs": {
@@ -15,6 +15,12 @@
   "type": "module",
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
+  "scripts": {
+    "build:clean": "rm -rf dist",
+    "build:ts": "tsc --declaration",
+    "build": "npm run build:clean && npm run build:ts",
+    "lint": "eslint --fix ./src"
+  },
   "exports": {
     ".": {
       "browser": "./dist/src/index.js",
@@ -26,12 +32,6 @@
     },
     "./eslint": "./dist/src/eslint.js"
   },
-  "scripts": {
-    "build:clean": "rm -rf dist",
-    "build:ts": "tsc --declaration",
-    "build": "npm run build:clean && npm run build:ts",
-    "lint": "eslint --fix ./src"
-  },
   "peerDependencies": {
     "@eslint/js": ">=10",
     "@stylistic/eslint-plugin": ">=5",
@@ -41,12 +41,12 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@stylistic/eslint-plugin": "^5.9.0",
-    "@typescript-eslint/parser": "^8.56.1",
-    "@types/node": "^25.3.3",
-    "eslint": "^10.0.2",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^8.58.2",
+    "@types/node": "^25.6.0",
+    "eslint": "^10.2.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.56.1"
+    "typescript": "^6.0.2",
+    "typescript-eslint": "^8.58.2"
   }
 }
