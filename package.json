@@ -2,7 +2,7 @@
   "name": "utilbee",
   "description": "Shared utilities for reuse across Login projects",
   "homepage": "https://github.com/Login-Linjeforening-for-IT/utilbee#readme",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "main": "./dist/src/index.js",
   "type": "module",
   "repository": {
@@ -44,9 +44,9 @@
     "@stylistic/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^8.58.2",
     "@types/node": "^25.6.0",
-    "eslint": "^10.2.0",
+    "eslint": "^10.2.1",
     "ts-node": "^10.9.2",
-    "typescript": "^6.0.2",
+    "typescript": "^6.0.3",
     "typescript-eslint": "^8.58.2"
   }
 }
