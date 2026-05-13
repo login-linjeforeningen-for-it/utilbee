@@ -2,7 +2,7 @@
   "name": "utilbee",
   "description": "Shared utilities for reuse across Login projects",
   "homepage": "https://github.com/Login-Linjeforening-for-IT/utilbee#readme",
-  "version": "1.4.6",
+  "version": "1.4.7",
   "main": "./dist/src/index.js",
   "type": "module",
   "repository": {
@@ -15,7 +15,7 @@
   "scripts": {
     "build:clean": "rm -rf dist",
     "build:ts": "tsc --declaration",
-    "build": "npm run build:clean && npm run build:ts",
+    "build": "bun run build:clean && bun run build:ts",
     "lint": "eslint --fix ./src"
   },
   "license": "ISC",
