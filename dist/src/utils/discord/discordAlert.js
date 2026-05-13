@@ -1,4 +1,4 @@
-export default async function discordAlert({ webhookURL, title, description, color = 0xff0000, url, author, footer, fields, ping, threadId, timestamp, }) {
+export default async function discordAlert({ webhookURL, title, description, color = 0xdb6d28, url, author, footer, fields, ping, threadId, timestamp, }) {
     const webhookUrl = new URL(webhookURL);
     if (threadId) {
         webhookUrl.searchParams.set('thread_id', threadId);

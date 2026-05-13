@@ -16,7 +16,7 @@ export default async function discordAlert({
     webhookURL,
     title,
     description,
-    color = 0xff0000,
+    color = 0xdb6d28,
     url,
     author,
     footer,
