@@ -1,44 +1,61 @@
-import type { Data, DiscordAlertProps } from 'utilbee/utils'
+export interface DiscordAlertProps {
+    webhookURL: string
+    title: string
+    description: string
+    color?: number
+    url?: string
+    author?: string
+    footer?: string
+    fields?: { name: string; value: string; inline?: boolean }[]
+    ping?: string
+    threadId?: string
+    timestamp?: string
+}
 
 export default async function discordAlert({
-    application,
+    webhookURL,
+    title,
     description,
-    type = '',
-    ping = false,
-    criticalRole,
-    webhookURL
-}: DiscordAlertProps): Promise<number> {
-    try {
-        const data: Data = {
-            embeds: [
-                {
-                    title: `🐝 ${application} ${`${type.toUpperCase()} `}🐝`,
-                    description: description,
-                    color: 0xff0000,
-                    timestamp: new Date().toISOString()
-                }
-            ]
-        }
+    color = 0xff0000,
+    url,
+    author,
+    footer,
+    fields,
+    ping,
+    threadId,
+    timestamp,
+}: DiscordAlertProps): Promise<void> {
+    const webhookUrl = new URL(webhookURL)
+    if (threadId) {
+        webhookUrl.searchParams.set('thread_id', threadId)
+    }
 
-        if (ping) {
-            data.content = `🚨 <@&${criticalRole}> 🚨`
-        }
+    const payload: { content?: string; embeds: object[] } = {
+        embeds: [
+            {
+                author: author ? author : undefined,
+                title: `${title} 🐝`,
+                url,
+                description,
+                color,
+                fields,
+                footer: footer ? { text: footer } : undefined,
+                timestamp: timestamp ?? new Date().toISOString(),
+            }
+        ]
+    }
 
-        const response = await fetch(webhookURL ?? '', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
+    if (ping) {
+        payload.content = `<@&${ping}>`
+    }
 
-        if (!response.ok) {
-            throw new Error(await response.text())
-        }
+    const response = await fetch(webhookUrl.toString(), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+    })
 
-        return response.status
-    } catch (error) {
-        console.log(error)
-        return 500
+    if (!response.ok) {
+        throw new Error(`Discord webhook failed: ${response.status} ${await response.text()}`)
     }
 }

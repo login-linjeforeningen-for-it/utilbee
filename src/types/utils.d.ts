@@ -9,27 +9,21 @@ declare module 'utilbee/utils' {
         webhookURL: string
         criticalRole: string
     }
-    export interface Embed {
-        title: string
-        description: string
-        color: number
-        timestamp: string
-    }
-
-    export interface Data {
-        content?: string
-        embeds: Embed[]
-    }
 
     export interface DiscordAlertProps {
-        application: string
-        description: string
-        type: 'get' | 'post' | ''
-        ping: boolean
-        criticalRole: string
         webhookURL: string
+        title: string
+        description: string
+        color?: number
+        url?: string
+        author?: string
+        footer?: string
+        fields?: { name: string; value: string; inline?: boolean }[]
+        ping?: string
+        threadId?: string
+        timestamp?: string
     }
 
     export default async function alertSlowQuery(props: SlowQueryProps): Promise<void>;
-    export default async function discordAlert(props: DiscordAlertProps): Promise<number>;
+    export function discordAlert(props: DiscordAlertProps): Promise<void>;
 }

@@ -1,32 +1,31 @@
-export default async function discordAlert({ application, description, type = '', ping = false, criticalRole, webhookURL }) {
-    try {
-        const data = {
-            embeds: [
-                {
-                    title: `🐝 ${application} ${`${type.toUpperCase()} `}🐝`,
-                    description: description,
-                    color: 0xff0000,
-                    timestamp: new Date().toISOString()
-                }
-            ]
-        };
-        if (ping) {
-            data.content = `🚨 <@&${criticalRole}> 🚨`;
-        }
-        const response = await fetch(webhookURL ?? '', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-        if (!response.ok) {
-            throw new Error(await response.text());
-        }
-        return response.status;
+export default async function discordAlert({ webhookURL, title, description, color = 0xff0000, url, author, footer, fields, ping, threadId, timestamp, }) {
+    const webhookUrl = new URL(webhookURL);
+    if (threadId) {
+        webhookUrl.searchParams.set('thread_id', threadId);
     }
-    catch (error) {
-        console.log(error);
-        return 500;
+    const payload = {
+        embeds: [
+            {
+                author: author ? author : undefined,
+                title: `${title} 🐝`,
+                url,
+                description,
+                color,
+                fields,
+                footer: footer ? { text: footer } : undefined,
+                timestamp: timestamp ?? new Date().toISOString(),
+            }
+        ]
+    };
+    if (ping) {
+        payload.content = `<@&${ping}>`;
+    }
+    const response = await fetch(webhookUrl.toString(), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+    });
+    if (!response.ok) {
+        throw new Error(`Discord webhook failed: ${response.status} ${await response.text()}`);
     }
 }
