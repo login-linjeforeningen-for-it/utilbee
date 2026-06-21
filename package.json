@@ -33,11 +33,11 @@
     "./eslint": "./dist/src/eslint.js"
   },
   "peerDependencies": {
-    "@eslint/js": "10.0.1",
-    "@stylistic/eslint-plugin": "5.10.0",
-    "@typescript-eslint/parser": "8.58.2",
-    "eslint": "10.2.1",
-    "typescript-eslint": "8.58.2"
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^8.58.2",
+    "eslint": "^10.2.1",
+    "typescript-eslint": "^8.58.2"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
