@@ -28,5 +28,5 @@ bun run build
 - `src/utils/cookies/` - Cookie helpers
 - `src/utils/discord/` - Discord utilities
 - `src/utils/sql/` - SQL helpers
-- `src/server.ts` - Server utilities
+- `src/utils/server.ts` - Server utilities
 - `src/types/` - Shared TypeScript type definitions
