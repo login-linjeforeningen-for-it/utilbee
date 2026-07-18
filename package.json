@@ -16,7 +16,9 @@
     "build:clean": "rm -rf dist",
     "build:ts": "tsc --declaration",
     "build": "bun run build:clean && bun run build:ts",
-    "lint": "eslint --fix ./src"
+    "lint": "eslint ./src",
+    "lint:fix": "eslint --fix ./src",
+    "typecheck": "tsc --noEmit"
   },
   "license": "ISC",
   "author": "",
