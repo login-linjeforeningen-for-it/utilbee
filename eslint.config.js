@@ -27,7 +27,11 @@ export default [
             '@stylistic/type-generic-spacing': ['error'],
             '@stylistic/type-annotation-spacing': 'error',
             '@stylistic/no-trailing-spaces': 'error',
-            '@typescript-eslint/no-unused-vars': 'error',
+            '@typescript-eslint/no-unused-vars': ['error', {
+                argsIgnorePattern: '^_',
+                varsIgnorePattern: '^_',
+                caughtErrorsIgnorePattern: '^_',
+            }],
             '@stylistic/eol-last': ['error', 'always'],
             '@typescript-eslint/ban-ts-comment': 'off',
             '@typescript-eslint/no-non-null-assertion': 'off',
